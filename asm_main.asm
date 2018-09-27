@@ -9,14 +9,14 @@
 ;
 segment .data
 
-prompt  db "First enter an integer and then a character.", 10,\
+prompt:  db "First enter an integer and then a character.", 10,\
 "Please enter an integer.", 10, 0
 
-prompt2 db "Please enter a character.", 10, 0
+prompt2: db "Please enter a character.", 10, 0
 
-prompt3 db "Your two inputs were ", 0
-prompt4 db " and ", 0
-prompt5 db ".", 0
+prompt3: db "Your two inputs were ", 0
+prompt4: db " and ", 0
+prompt5: db ".", 0
 
 ; uninitialized data is put in the .bss segment
 ;
@@ -36,17 +36,17 @@ asm_main:
         enter   2,0               ; setup routine
         pusha
 ; Code
-	mov	eax, prompt	; Print prompt
+	mov	eax, prompt2	; Print prompt
 	call	print_string	
-	
-	call	read_int	; input_int =  scanf("d%" );
-	mov	input_int, eax
-	
-	mov	eax, prompt2	; print prompt2
-	call	print_string
 
 	call	read_char	; input_char = scanf("%s");
 	mov	input_char, eax
+	
+	mov	eax, prompt	; print prompt2
+	call	print_string
+
+	call	read_int	; input_int =  scanf("d%" );
+	mov	input_int, eax
 	
 times 3 call	print_nl	; 4 newline characters.
 
